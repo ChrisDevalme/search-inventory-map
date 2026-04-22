@@ -15,16 +15,27 @@ public class SearchInventoryMap {
     }
 
     public static void LookUpById(Map<Integer, Product> inventory) {
-        boolean exit = false;
+        boolean continueLoop = true;
+        while(continueLoop) {
+            System.out.print("Enter Item ID :");
+            Scanner scanner = new Scanner(System.in);
+            try {
+                int itemId = scanner.nextInt();
+                scanner.nextLine();
+                Product matchedProduct = inventory.get(itemId);
+                if (matchedProduct == null) {
+                    System.out.println("We don't have this product");
+                } else {
+                    System.out.println(matchedProduct);
+                }
+            } catch (Exception e) {
+                System.out.println("Incorrect input, please use numbers only.");
+                continue;
+            }
+            System.out.println("Would you like to look up another item? enter \"y\" for yes, \"n\" fo no");
+            String answer = scanner.nextLine();
+            continueLoop = !answer.equalsIgnoreCase("n");
 
-        System.out.print("Enter Item ID :");
-        Scanner scanner = new Scanner(System.in);
-        int itemId = scanner.nextInt();
-        Product matchedProduct = inventory.get(itemId);
-        if (matchedProduct == null) {
-            System.out.println("We don't have this product");
-        } else {
-            System.out.println(matchedProduct);
         }
     }
 

@@ -25,7 +25,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "com.pluralsight.Product " +
+        return
                 "id: " + id +
                 " | name : " + name +
                 " | price: " + price;

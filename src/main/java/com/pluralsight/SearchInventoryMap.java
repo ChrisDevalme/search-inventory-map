@@ -9,24 +9,27 @@ public class SearchInventoryMap {
     public static final String fileName = "inventory.csv";
 
     public static void main(String[] args) {
-        Map<Integer, String> inventory = loadInventory();
+        Map<Integer, Product> inventory = loadInventory();
         LookUpById(inventory);
 
     }
 
-    public static void LookUpById(Map<Integer, String> inventory) {
+    public static void LookUpById(Map<Integer, Product> inventory) {
+        boolean exit = false;
+
         System.out.print("Enter Item ID :");
         Scanner scanner = new Scanner(System.in);
         int itemId = scanner.nextInt();
-        for (Integer i : inventory.keySet()) {
-            if (i == itemId) {
-                System.out.println(inventory.get(i));
-            }
+        Product matchedProduct = inventory.get(itemId);
+        if (matchedProduct == null) {
+            System.out.println("We don't have this product");
+        } else {
+            System.out.println(matchedProduct);
         }
     }
 
-    public static Map<Integer, String> loadInventory() {
-        Map<Integer, String> inventory = new HashMap<>();
+    public static Map<Integer, Product> loadInventory() {
+        Map<Integer, Product> inventory = new HashMap<>();
         try {
             BufferedReader bf = new BufferedReader(new FileReader(fileName));
             String line;
@@ -37,7 +40,7 @@ public class SearchInventoryMap {
                 String productName = productString[1];
                 double productPrice = Double.parseDouble(productString[2]);
                 Product newProduct = new Product(productID, productName, productPrice);
-                inventory.put(productID,newProduct.getName());
+                inventory.put(productID,newProduct);
             }
             bf.close();
 

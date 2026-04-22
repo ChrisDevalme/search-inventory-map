@@ -32,7 +32,7 @@ public class SearchInventoryMap {
                 System.out.println("Incorrect input, please use numbers only.");
                 continue;
             }
-            System.out.println("Would you like to look up another item? enter \"y\" for yes, \"n\" fo no");
+            System.out.println("Would you like to look up another item? enter \"Y\" for Yes, \"N\" for No");
             String answer = scanner.nextLine();
             continueLoop = !answer.equalsIgnoreCase("n");
 
